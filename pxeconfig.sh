@@ -4,7 +4,7 @@ clear
 
 source ./config.sh
 source ./menu/settings.sh
-source ./functions.sh
+source ./includes/functions.sh
 source ./includes/checkRequirements.sh
 
 # install dialog package if not present
