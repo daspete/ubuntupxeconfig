@@ -21,10 +21,20 @@ tftpRoot="/srv/tftp"
 
 imageSearchFolder="/tmp"
 
+
+
+
+
+
+
+
+
+
+
 ####################################
 ## DO NOT TOUCH THESE LINES BELOW ##
 ####################################
-##        HERE ARE DRAGONS        ##
+##    ~~~~HERE ARE DRAGONS~~~~    ##
 ####################################
 mainMenuInput=/tmp/mainMenuInput.$$
 mainMenuOutput=/tmp/mainMenuOutput.$$

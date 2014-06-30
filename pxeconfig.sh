@@ -4,10 +4,10 @@
 clear
 
 # include files
-source ./config.sh
-source ./menu/settings.sh
-source ./includes/functions.sh
-source ./tasks/checkRequirements.sh
+source config.sh
+source menu/settings.sh
+source includes/functions.sh
+source tasks/checkRequirements.sh
 
 # install dialog package if not present
 if [ $dialogMissing == "1" ]; then
@@ -16,17 +16,16 @@ if [ $dialogMissing == "1" ]; then
         echo "done"
 fi
 
-# show intro screen
-source ./menu/startDialog.sh
+# check if required packages are installed
+if [ $dhcpServerMissing -ne "0" -o $nfsServerMissing -ne "0" -o $tftpServerMissing -ne "0" -o $syslinuxMissing -ne "0" ]; then
+   source menu/startDialog.sh
+fi
 
 # show main menu
-source ./menu/mainMenu.sh
+source menu/mainMenu.sh
 
 # clear screen after work
 clear
 
 # cleanup temporary files if there are any
 $cleanUpCommands
-
-
-

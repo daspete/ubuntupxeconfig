@@ -1,5 +1,5 @@
 #!/bin/bash
 
-dialog --backtitle "$installerTitle" \
---title "Install requirements" \
---infobox "Installing $currentRequirement" 3 40
+dialog  --backtitle "$installerMenuTitle" \
+		--title "$installingRequirementTitle" \
+		--infobox "Installing $currentRequirement" 3 40
