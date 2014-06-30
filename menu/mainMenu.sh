@@ -2,7 +2,7 @@
 
 while true; do
 
-	dialog --clear  --help-button --backtitle "$installerTitle" \
+	dialog --clear  --backtitle "$installerTitle" \
 	--title "MAIN MENU" \
 	--nocancel \
 	--menu "\nChoose your task with the cursor keys" 15 70 5 \
