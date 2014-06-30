@@ -37,10 +37,10 @@ nfsServerMissing=1
 syslinuxMissing=1
 
 cleanUpCommands="\
-rm -rf $mainMenuInput > /dev/null 2&>1; \
-rm -rf $mainMenuOutput > /dev/null 2&>1; \
-rm -rf $networkFormInput > /dev/null 2&>1; \
-rm -rf $tftpFormInput > /dev/null 2&>1; \
+rm -rf $mainMenuInput > /dev/null 2>&1; \
+rm -rf $mainMenuOutput > /dev/null 2>&1; \
+rm -rf $networkFormInput > /dev/null 2>&1; \
+rm -rf $tftpFormInput > /dev/null 2>&1; \
 clear; \
 exit;"
 
