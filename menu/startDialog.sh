@@ -2,7 +2,7 @@
 
 # ask user if he wants to start
 dialog --title "Install PXE-Server-Requirements" \
---backtitle "EASY PXE-Server Configuration" \
+--backtitle "$installerTitle" \
 --yesno "Welcome to the PXE-Server-Configuration. Do you wish to start with installing the required packages?" 7 60
 
 r=$?

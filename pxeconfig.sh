@@ -3,6 +3,7 @@
 clear
 
 source ./config.sh
+source ./menu/settings.sh
 source ./functions.sh
 source ./includes/checkRequirements.sh
 
@@ -14,6 +15,7 @@ if [ $dialogMissing == "1" ]; then
 fi
 
 source ./menu/startDialog.sh
+source ./menu/mainMenu.sh
 
 
 
