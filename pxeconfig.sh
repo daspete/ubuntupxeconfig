@@ -2,4 +2,20 @@
 
 clear
 
+source ./config.sh
+source ./functions.sh
+source ./includes/checkRequirements.sh
+
+# install dialog package if not present
+if [ $dialogMissing == "1" ]; then
+        echo -n "Installing dialog package..."
+        apt-get -y install dialog >/dev/null 2>&1
+        echo "done"
+fi
+
+source ./menu/startDialog.sh
+
+
+
+
 
