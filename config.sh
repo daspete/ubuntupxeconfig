@@ -21,9 +21,6 @@ tftpRoot="/srv/tftp"
 
 imageSearchFolder="/tmp"
 
-
-
-
 ####################################
 ## DO NOT TOUCH THESE LINES BELOW ##
 ####################################

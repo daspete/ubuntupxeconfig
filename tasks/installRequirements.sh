@@ -27,5 +27,3 @@ if [ $syslinuxMissing == "1" ]; then
 	apt-get -y install syslinux >/dev/null 2>&1
 	sleep 1
 fi
-
-
