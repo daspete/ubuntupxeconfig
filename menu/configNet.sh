@@ -4,8 +4,8 @@
 dialog --ok-label "Submit" \
 	--backtitle "$installerTitle" \
 	--title "PXE-Network Configuration" \
-	--form "Choose your network settings" \
-	15 51 0 \
+	--form "\nChoose your network settings" \
+	16 51 0 \
 	"PXE-Server IP:"	1 1	"$netIP" 		1 30 15 0 \
 	"PXE-DHCP-Range-Start:"	2 1	"$netDHCPRangeStart" 	2 30 15 0 \
 	"PXE-DHCP-Range-Stop:"	3 1	"$netDHCPRangeStop"	3 30 15 0 \

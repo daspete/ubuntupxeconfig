@@ -15,7 +15,7 @@ while true; do
 
 	case $menuitem in
 		config_net) source ./menu/configNet.sh;;
-		config_TFTP) configTFTP;;
+		config_TFTP) source ./menu/configTFTP.sh;;
 		config_NFS) configNFS;;
 		Exit) break;;
 	esac

@@ -2,6 +2,6 @@
 
 function installRequirements {
 	clear
-        source ./includes/installRequirements.sh
+        source ./tasks/installRequirements.sh
 }
 

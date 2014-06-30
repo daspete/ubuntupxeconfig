@@ -5,7 +5,7 @@ clear
 source ./config.sh
 source ./menu/settings.sh
 source ./includes/functions.sh
-source ./includes/checkRequirements.sh
+source ./tasks/checkRequirements.sh
 
 # install dialog package if not present
 if [ $dialogMissing == "1" ]; then
@@ -17,7 +17,9 @@ fi
 source ./menu/startDialog.sh
 source ./menu/mainMenu.sh
 
+clear
 
+$cleanUpCommands
 
 
 
