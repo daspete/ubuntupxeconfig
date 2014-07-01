@@ -18,6 +18,7 @@ tftpListen="0.0.0.0:69"
 tftpOptions="-l -s"
 tftpUsername="tftp"
 tftpRoot="/srv/tftp"
+tftpImageRoot="/images"
 
 imageSearchFolder="/tmp"
 
