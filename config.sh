@@ -22,8 +22,8 @@ tftpImageRoot="/images"
 
 imageSearchFolder="/tmp"
 
-
-
+currentImageNameToDownload=""
+currentImageURLToDownload=""
 
 
 
@@ -38,7 +38,10 @@ imageSearchFolder="/tmp"
 ##    ~~~~HERE ARE DRAGONS~~~~    ##
 ####################################
 mainMenuInput=/tmp/mainMenuInput.$$
-mainMenuOutput=/tmp/mainMenuOutput.$$
+imageMenuInput=/tmp/imageMenuInput.$$
+imageDownloadMenuInput=/tmp/imageDownloadMenuInput.$$
+
+wgetLog=/tmp/wgetLog.$$
 
 networkFormInput=/tmp/networkFormInput.$$
 tftpFormInput=/tmp/tftpFormInput.$$
@@ -51,10 +54,12 @@ syslinuxMissing=1
 
 cleanUpCommands="\
 rm -rf $mainMenuInput >/dev/null 2>&1; \
-rm -rf $mainMenuOutput >/dev/null 2>&1; \
+rm -rf $imageMenuInput >/dev/null 2>&1; \
+rm -rf $imageDownloadMenuInput >/dev/null 2>&1; \
 rm -rf $networkFormInput >/dev/null 2>&1; \
 rm -rf $tftpFormInput >/dev/null 2>&1; \
+rm -rf $wgetLog >/dev/null 2>&1; \
 clear; \
 exit;"
 
-trap "$cleanUpCommands" SIGHUP SIGINT SIGTERM
+#trap "$cleanUpCommands" SIGHUP SIGINT SIGTERM

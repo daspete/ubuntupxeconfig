@@ -13,4 +13,10 @@ networkMenuAction="Choose your network settings"
 tftpMenuTitle="TFTP-Server Configuration"
 tftpMenuAction="Choose your TFTP settings"
 
+imageMenuTitle="IMAGES CONFIGURATION"
+imageMenuAction="Download and integrate new os-images or delete existing ones"
+
+downloadImageMenuTitle="DOWNLOAD IMAGE"
+downloadImageMenuAction="Tell me the name and the URL of your desired OS to download"
+
 installingRequirementTitle="Install requirements"

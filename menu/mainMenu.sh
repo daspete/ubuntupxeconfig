@@ -19,7 +19,7 @@ while true; do
 
 		network_CONFIG) source menu/configNet.sh;;
 		tftp_CONFIG) 	source menu/configTFTP.sh;;
-		image_CONFIG) 	source menu/configImages.sh;;
+		image_CONFIG) 	source menu/imageMenu.sh;;
 		settings_SAVE) 	source menu/writeSettings.sh;;
 		Exit) 			break;;
 
