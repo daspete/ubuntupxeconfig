@@ -37,14 +37,16 @@ currentImageURLToDownload=""
 ####################################
 ##    ~~~~HERE ARE DRAGONS~~~~    ##
 ####################################
-mainMenuInput=/tmp/mainMenuInput.$$
-imageMenuInput=/tmp/imageMenuInput.$$
-imageDownloadMenuInput=/tmp/imageDownloadMenuInput.$$
+processID=$$
 
-wgetLog=/tmp/wgetLog.$$
+mainMenuInput=/tmp/mainMenuInput.${processID}
+imageMenuInput=/tmp/imageMenuInput.${processID}
+imageDownloadMenuInput=/tmp/imageDownloadMenuInput.${processID}
 
-networkFormInput=/tmp/networkFormInput.$$
-tftpFormInput=/tmp/tftpFormInput.$$
+wgetLog=/tmp/wgetLog.${processID}
+
+networkFormInput=/tmp/networkFormInput.${processID}
+tftpFormInput=/tmp/tftpFormInput.${processID}
 
 dialogMissing=1
 dhcpServerMissing=1

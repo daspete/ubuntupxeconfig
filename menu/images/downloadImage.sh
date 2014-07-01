@@ -21,7 +21,7 @@ if [ ${?} -eq 0 ]; then
 		currentImageNameToDownload=${downloadConfArray[0]}
 		currentImageURLToDownload=${downloadConfArray[1]}
 
-		source tasks/downloadImage.sh
+		source tasks/downloadImageAlternative.sh
 	else
 		currentImageNameToDownload=""
 		currentImageURLToDownload=""
