@@ -20,7 +20,7 @@ tftpUsername="tftp"
 tftpRoot="/srv/tftp"
 tftpImageRoot="/images"
 
-imageSearchFolder="/tmp"
+imageSearchFolder="/srv/tftp/fullImages"
 
 currentImageNameToDownload=""
 currentImageURLToDownload=""

@@ -3,6 +3,8 @@
 doDownload=1
 downloadError=0
 imageFilename=${currentImageURLToDownload##*/}
+imageName=${imageFilename##*/}
+imageName=`echo ${imageName%.*}`
 
 wgetProcessID=0
 
@@ -15,48 +17,55 @@ wgetDownloadTime=0
 wgetPercentDownloaded=0
 wgetPercentDownloadedTemp=0
 
-
-if [ -f "${imageSearchFolder}/${imageFilename}" ]; then
+if [ -f "${imageSearchFolder}/${imageName}/${imageFilename}" ]; then
 	source menu/images/confirmReDownload.sh
+
+	if [ ${doDownload} == 1 ]; then
+		rm -rf "${imageSearchFolder}/${imageName}/${imageFilename}" >/dev/null 2>&1;
+	fi
 fi
 
 if [ ${doDownload} == 1 ]; then
 	rm -rf ${wgetLog} >/dev/null 2>&1;
 	touch ${wgetLog}
 
-	wget -P "${imageSearchFolder}" -o ${wgetLog} "${currentImageURLToDownload}" &
+	mkdir -p "${imageSearchFolder}/${imageName}" >/dev/null 2>&1
+	echo "${currentImageNameToDownload}" >${imageSearchFolder}/${imageName}/imageData.dat
 
-	wgetProcessID=$!
-	wgetStartTime=`date +%s`
+	wget -P "${imageSearchFolder}/${imageName}" -o ${wgetLog} "${currentImageURLToDownload}" &
+	(
+		wgetProcessID=$!
+		wgetStartTime=`date +%s`
 
-	while ps -p ${wgetProcessID} >/dev/null; do
-		wgetCurrentTime=`date +%s`
+		while ps -p ${wgetProcessID} >/dev/null; do
+			wgetCurrentTime=`date +%s`
 
-		if [ -f "${imageSearchFolder}/${imageFilename}" ]; then
-			wgetDownloadedSize=$(stat -c%s "${imageSearchFolder}/${imageFilename}")
-		fi
-		
-		wgetPercentDownloaded=`awk '/%/ { print $7-- }' ${wgetLog} | tail -n1 | uniq -u`
-		if [ -z $wgetPercentDownloaded ]; then
-			wgetPercentDownloaded=$wgetPercentDownloadedTemp
-		else
-			wgetPercentDownloadedTemp=$wgetPercentDownloaded
-		fi
+			wgetPercentDownloaded=`awk '/%/ { print $7-- }' ${wgetLog} | tail -n1 | uniq -u`
 
-		wgetDownloadRate=`echo "${wgetDownloadedSize} / (${wgetCurrentTime} - ${wgetStartTime} + 0.01)" | bc`
+			if [ -f "${imageSearchFolder}/${imageName}/${imageFilename}" ]; then
+				wgetDownloadedSize=$(stat -c%s "${imageSearchFolder}/${imageName}/${imageFilename}")
+			fi
+			
+			if [ -z $wgetPercentDownloaded ]; then
+				wgetPercentDownloaded=$wgetPercentDownloadedTemp
+			else
+				wgetPercentDownloadedTemp=$wgetPercentDownloaded
+			fi
 
+			wgetDownloadRate=`echo "${wgetDownloadedSize} / (${wgetCurrentTime} - ${wgetStartTime} + 0.01)" | bc`
 
-		nicebytes ${wgetDownloadedSize} 
-		#echo "${wgetDownloadedSize}" | awk '{ sum=$1 ; hum[1024**3]="Gb";hum[1024**2]="Mb";hum[1024]="Kb"; for (x=1024**3; x>=1024; x/=1024){ if (sum>=x) { printf "%.2f %s\n",sum/x,hum[x];break } }}' 
-		#echo "${wgetPercentDownloaded}" | awk '{ sum=$1 ; hum[1024**3]="Gb";hum[1024**2]="Mb";hum[1024]="Kb"; for (x=1024**3; x>=1024; x/=1024){ if (sum>=x) { printf "%.2f %s\n",sum/x,hum[x];break } }}' 
-		#echo "${wgetDownloadRate}" | awk '{ sum=$1 ; hum[1024**3]="Gb";hum[1024**2]="Mb";hum[1024]="Kb"; for (x=1024**3; x>=1024; x/=1024){ if (sum>=x) { printf "%.2f %s\n",sum/x,hum[x];break } }}' 
-		#dialog  --backtitle "$installerMenuTitle" \
-		#		--title "Downloading ${currentImageNameToDownload}" \
-		#		--clear \
-		#		--gauge "Downloaded: ${wgetDownloadedSize}\nDownload speed: ${wgetDownloadRate}" \
-		#		10 60 ${wgetPercentDownloaded}
+			wgetDownloadedSize=`nicebytes ${wgetDownloadedSize}`
+			wgetDownloadRate=`nicebytes ${wgetDownloadRate}`
 
-		sleep 1;
-	done
+			# DIALOG OUTPUT #####################
+			echo "XXX"
+			echo "##Downloaded:     ${wgetDownloadedSize}\n##Download speed: ${wgetDownloadRate}/s"
+			echo "XXX"
 
+			echo ${wgetPercentDownloaded}
+			#####################################
+			
+			sleep 1
+		done
+	)| dialog  --backtitle "$installerMenuTitle" --title "Downloading ${currentImageNameToDownload}" --gauge "" 7 60 0
 fi
